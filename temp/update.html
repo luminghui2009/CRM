@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        a{
+            text-decoration:none;
+        }
+        .container{
+            width:400px;
+           padding-top:50px;
+            text-align: center;
+        }
+        a{
+            display:block;
+            margin:20px;
+        }
+        label{
+            display: inline-block;
+            width:100px;
+            text-align:center;
+        }
+        button{
+            width:120px;
+            height:30px;
+            text-align:center;
+            line-height:20px;
+            margin-top:14px;
+            font-size:16px;
+        }
+
+    </style>
+</head>
+<body>
+     <a href="../index.html">返回>></a><br>
+    <div class="container">
+        <label>用户名</label><input type="text" id="userName"><br>
+        <label>TEL</label><input type="text" id="userTel"><br>
+        <button id="btn">确认修改</button>
+    </div>
+    <script type="text/javascript" src="../ajax1.js"></script>
+    <script type="text/javascript">
+        let username=document.getElementById("userName");
+        let usertel=document.getElementById("userTel");
+        let btn=document.getElementById("btn");
+        
+        function getUrlParam(url){
+            let reg=/([^?&=]+)=([^?&=]+)/g;
+            let obj={};
+            url.replace(reg,function(){
+                obj[arguments[1]]=arguments[2];
+            });
+            return obj;
+           
+        }
+        let urlParam = getUrlParam(window.location.href);
+        $.ajax({
+            url:"/getUserInfo",
+            data:urlParam,
+            dataType:"json",
+            success:function(result){
+                console.log(result);
+                if(result&&result.error===0){
+                    username.value=result.data["name"];
+                    usertel.value=result.data["tel"];
+                }
+            }
+        });
+        
+        //确认修改后的数据交互
+        btn.onclick=function(){
+            $.ajax({
+                url:"/updateUserInfo",
+                data:{
+                    id:urlParam.uid,
+                    name:username.value,
+                    tel:usertel.value
+                },
+                type:"POST",
+                dataType:"json",
+                success:function(result){
+                    if(result&&result.error===0){
+                        alert(result.msg);
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

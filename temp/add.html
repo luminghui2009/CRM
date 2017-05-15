@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>增加用户</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        a{
+            text-decoration:none;
+        }
+        .container{
+            width:400px;
+           padding-top:50px;
+            text-align: center;
+        }
+        a{
+            display:block;
+            margin:20px;
+        }
+        label{
+            display: inline-block;
+            width:100px;
+            text-align:center;
+        }
+        button{
+            width:120px;
+            height:30px;
+            text-align:center;
+            line-height:20px;
+            margin-top:14px;
+            font-size:16px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <a href="../index.html">返回>></a><br>
+    <div class="container">
+        <label>用户名</label><input type="text" id="userName"><br>
+        <label>TEL</label><input type="text" id="userTel"><br>
+        <button id="btn">增加用户</button>
+    </div>
+</body>
+<script type="text/javascript" src="../ajax1.js"></script>
+<script type="text/javascript">
+    (function(){
+        let username=document.getElementById("userName");
+        let usertel=document.getElementById("userTel");
+        let btn=document.getElementById("btn");
+
+        
+        btn.onclick=function(){
+            let nameVal = username.value;
+            let telVal = usertel.value;
+           if(nameVal&&telVal){
+               $.ajax({
+                   url: "/addUserInfo",
+                   type: "POST",
+                   data: {
+                       name: nameVal,
+                       tel: telVal
+                   },
+                   dataType: "json",
+                   success: function (result) {
+                       if (result && result.error === 0) {
+                          username.value = "";
+                           usertel.value= "";
+                           alert(result.msg);
+                       } else {
+                           alert("请将用户信息填写完整");
+                       }
+                   }
+               });
+           }
+
+        }
+
+    })()
+</script>
+</html>

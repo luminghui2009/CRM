@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CRM客户管理系统</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .container{
+            width:404px;
+            margin:30px auto;
+        }
+        .container h3{
+            width:404px;
+            height:20px;
+            margin-bottom:15px;
+        }
+        .container >a{
+            display: inline-block;
+            width:100px;
+            height:28px;
+            text-decoration:none;
+            background-color:#e0e0e0;
+            text-align:center;
+            line-height:28px;
+            margin-bottom:15px;
+            border:1px solid black;
+        }
+        p{
+            width:404px;
+            border:1px solid black;
+            border-right:none;
+            overflow: hidden;
+            background-color:#f6f9f9;
+        }
+        p span{
+            float:left;
+            width:100px;
+            height:30px;
+            border-right:1px solid black;
+            line-height:30px;
+            text-align:center;
+            -webkit-user-select:none;
+        }
+        ul{
+            list-style:none;
+            width:404px;
+        }
+        ul li{
+            width:404px;
+            border-left:1px solid black;
+            border-bottom:1px solid black;
+            overflow: hidden;
+        }
+        ul li span{
+            width:100px;
+            height:30px;
+            float:left;
+            border-right:1px solid black;
+            text-align:center;
+            line-height:30px;
+            font-size:16px;
+        }
+        ul li span:nth-child(3){
+            font-size:14px;
+        }
+        ul li span a{
+            display: inline-block;
+            width:40px;
+            margin-right:5px;
+
+        }
+        a{
+            text-decoration:none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>CRM客户管理系统</h3>
+        <a href="./temp/add.html">增加</a>
+        <p>
+            <span>id</span>
+            <span>name</span>
+            <span>tel</span>
+            <span>用户操作</span>
+        </p>
+        <ul id=userList></ul>
+    </div>
+
+</body>
+</html>
+<script type="text/javascript" src="ajax1.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
